@@ -5,11 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <?php wp_head(); ?>
+        <link rel="stylesheet" href="https://use.typekit.net/xyt4zrt.css"/>
     </head>
     <body>
     <!-- <img src="<?= get_theme_file_uri('/assets/swirl_V3@4x.png', NULL, '1.0', true) ?>" /> -->
         <header>
-            <div class="container-fluid">
+            <div class="container">
                 <nav class="navigation">
                     <?php
                         if ( function_exists( 'the_custom_logo' ) ) {

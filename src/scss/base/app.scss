@@ -16,7 +16,9 @@ $light: #ebebeb;
 $white: #fff;
 $yellow: #e7bd00;
 
-@import 'button.scss';
+* {
+    transition: all .2s ease;
+}
 
 html, body {
     min-height: 100vh;
@@ -24,7 +26,7 @@ html, body {
 
 body {
     background-image: url('/wp-content/themes/go-local/assets/swirl_V3@4x.png');
-    background-position: -11% -40%;
+    background-position: -19px -200px;
     background-size: 40%;
     background-repeat: no-repeat;
 }
@@ -36,6 +38,12 @@ body {
 
 .bg-white {
     background-color: $white;
+}
+
+a {
+    &, &:hover {
+        text-decoration: none;
+    }
 }
 
 .row {
@@ -66,7 +74,6 @@ body {
     flex-direction: column;
     height: 100%;
 
-    font-family: 'Poppins';
     background-color: $light;
 
     a {
@@ -82,7 +89,7 @@ body {
     .navigation {
         display: flex;
         justify-content: space-between;
-        padding: 1rem 2rem;
+        padding: 6rem 2rem;
         
         &.footer {
             background-color: transparent;
@@ -91,16 +98,10 @@ body {
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            
             li {
                 a {
-                    text-decoration: none;
                     color: black;
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-                &:not(:last-child) {
-                    margin-right: 1rem;
                 }
             }
         }
@@ -121,9 +122,9 @@ body {
     }
 
     .container {
-        max-width: 500px;
-        padding: 0 1rem;
-        margin: 0 auto;
+        // max-width: 500px;
+        // padding: 0 1rem;
+        // margin: 0 auto;
 
         .blog {
             display: block;

@@ -1,0 +1,40 @@
+.custom-logo-link img {
+    height: 65px;
+}
+
+.navigation .menu {
+    font-family: oxtail, serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    
+    &:hover {
+        li { opacity: .5;}
+    }
+    
+    li {
+        padding: 0 2.2rem;
+        margin-right: 0;
+        
+        &:hover {
+            opacity: 1;
+        }
+        
+        &:not(:last-child) {
+            border-right: 2px solid black;
+        }
+        
+        &.current-menu-item a {
+            border-bottom: 2px solid #D7A77B;
+        }
+        
+        a {
+            color: #564033;
+            vertical-align: middle;
+            padding: .3rem 0;
+        }
+    }
+}

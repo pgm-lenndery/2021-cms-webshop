@@ -97,10 +97,10 @@
 
 /***/ }),
 
-/***/ "./src/scss/app.scss":
-/*!***************************!*\
-  !*** ./src/scss/app.scss ***!
-  \***************************/
+/***/ "./src/scss/index.scss":
+/*!*****************************!*\
+  !*** ./src/scss/index.scss ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -109,14 +109,14 @@
 /***/ }),
 
 /***/ 0:
-/*!*************************************************!*\
-  !*** multi ./src/js/app.js ./src/scss/app.scss ***!
-  \*************************************************/
+/*!***************************************************!*\
+  !*** multi ./src/js/app.js ./src/scss/index.scss ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/lennertderyck/Local Sites/golocal/app/public/wp-content/themes/go-local/src/js/app.js */"./src/js/app.js");
-module.exports = __webpack_require__(/*! /Users/lennertderyck/Local Sites/golocal/app/public/wp-content/themes/go-local/src/scss/app.scss */"./src/scss/app.scss");
+module.exports = __webpack_require__(/*! /Users/lennertderyck/Local Sites/golocal/app/public/wp-content/themes/go-local/src/scss/index.scss */"./src/scss/index.scss");
 
 
 /***/ })

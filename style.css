@@ -593,14 +593,8 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-.btn {
-  display: inline-block;
-  background-color: #e7bd00;
-  color: #fff;
-  padding: 1rem;
-  border-radius: 0.25rem;
-  text-decoration: none;
-  margin: 1rem 0;
+* {
+  transition: all 0.2s ease;
 }
 
 html,
@@ -610,7 +604,7 @@ body {
 
 body {
   background-image: url("/wp-content/themes/go-local/assets/swirl_V3@4x.png");
-  background-position: -11% -40%;
+  background-position: -19px -200px;
   background-size: 40%;
   background-repeat: no-repeat;
 }
@@ -622,6 +616,11 @@ body {
 
 .bg-white {
   background-color: #fff;
+}
+
+a,
+a:hover {
+  text-decoration: none;
 }
 
 .row {
@@ -652,7 +651,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-family: "Poppins";
   background-color: #ebebeb;
 }
 
@@ -669,7 +667,7 @@ body main {
 body .navigation {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 6rem 2rem;
 }
 
 body .navigation.footer {
@@ -683,16 +681,7 @@ body .navigation ul {
 }
 
 body .navigation ul li a {
-  text-decoration: none;
   color: black;
-}
-
-body .navigation ul li a:hover {
-  text-decoration: underline;
-}
-
-body .navigation ul li:not(:last-child) {
-  margin-right: 1rem;
 }
 
 body .back {
@@ -709,12 +698,6 @@ body .hero img {
      object-fit: cover;
   width: 100%;
   height: 100%;
-}
-
-body .container {
-  max-width: 500px;
-  padding: 0 1rem;
-  margin: 0 auto;
 }
 
 body .container .blog {
@@ -745,5 +728,62 @@ footer {
 
 footer * {
   color: #fff !important;
+}
+
+body {
+  font-family: europa, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.custom-logo-link img {
+  height: 65px;
+}
+
+.navigation .menu {
+  font-family: oxtail, serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.navigation .menu:hover li {
+  opacity: 0.5;
+}
+
+.navigation .menu li {
+  padding: 0 2.2rem;
+  margin-right: 0;
+}
+
+.navigation .menu li:hover {
+  opacity: 1;
+}
+
+.navigation .menu li:not(:last-child) {
+  border-right: 2px solid black;
+}
+
+.navigation .menu li.current-menu-item a {
+  border-bottom: 2px solid #D7A77B;
+}
+
+.navigation .menu li a {
+  color: #564033;
+  vertical-align: middle;
+  padding: 0.3rem 0;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #e7bd00;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  margin: 1rem 0;
 }
 
