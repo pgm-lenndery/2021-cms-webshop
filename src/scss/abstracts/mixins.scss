@@ -1,0 +1,12 @@
+@mixin fontSerif {
+    font-family: oxtail, serif;
+}
+
+@mixin fontSans {
+    font-family: europa, sans-serif;
+}
+
+@mixin label {   
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}

@@ -1,0 +1,25 @@
+.font--serif {
+    @include fontSerif;
+}
+
+.label {
+    @include label;
+}
+
+.color--latte {
+    &, & * {
+        color: $latte
+    }
+}
+
+.color--coffee {
+    &, & * {
+        color: $coffee
+    }
+}
+
+.color--chocolat {
+    &, & * {
+        color: $chocolat
+    }
+}

@@ -1,57 +1,88 @@
-    <?php get_header(); ?>
+<?php 
+    $args = array( 'post_type' => 'product', 'posts_per_page' => 10 );
+    $query = get_posts($args);
+    $random_index = array_rand($query, 1);
+    $product_main = $query[$random_index]->ID;    
+    
+    $shop = get_field( 'shop', $product_main )[0];
+    $address = get_field( 'address', $shop->ID );
+    
+    $product = get_product($product_main);
+    $product_variations = $product->get_available_variations();   
+    $limited_products = array_slice($product_variations, 0, 3) 
+?>
 
-    <div class="container">
-        <h1>
-            <?php the_title() ?>
-        </h1>
+<?php get_header(); ?>
 
-        <div>
-            <?php the_content() ?>
+<div class="container position-relative">
+    <div class="hero hero--front-page">
+        <div class="wrapper">
+            <h1 class="hero__title display-2">
+                Support your<br>local businesses
+            </h1>
+            <h4 class="hero__subtitle">Help them now, for later</h4>
         </div>
-
-        <div>
-            <h2>Archives</h2>
-            <?php wp_get_archives() ?>
-
-            <h2>Categories</h2>
-            <?php wp_list_categories() ?>
-
-            <h2>Authors</h2>
-            <?php wp_list_authors() ?>
-        </div>
-
-        De twee meest recente blog post met categorie "Nieuws"
-        <?php
-            $newsArticles = new WP_Query( array(
-                'category_name' => 'news',
-                'posts_per_page' => 2
-            ));
-
-            while ($newsArticles->have_posts()) { $newsArticles->the_post() ?>
-                <div class="blog">
-                    <h2>
-                        <a  href="<?php the_permalink() ?>">
-                            <?= the_title() ?>
-                        </a>
-                    </h2>
+        <div class="hero__voucher-preview">
+            <div class="vouchers">
+                <div class="vouchers__wrapper">
+                    <div class="vouchers__variations">
+                        <?php 
+                            foreach( $limited_products as $prod ): 
+                            // print_r($products)
+                        ?>
+                            <a href="<?= get_permalink( $product->get_id() ) . "?value={$prod['display_regular_price']}"; ?>" class="voucher voucher--theme-dark">
+                                <div class="voucher__body">
+                                    <h4 class="voucher__seller"><?= $shop->post_title ?></h4>
+                                    <p><?= $address['place'] ?></p>
+                                </div>
+                                <div class="voucher__value-wrapper">
+                                    <h5><?= $prod['display_regular_price'] ?></h5>
+                                    <p>euro</p>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            <?php } wp_reset_postdata(); ?>
-
-            <a href="<?php echo get_category_link(get_cat_ID( 'news' )); ?>">
-                Nieuws
-            </a>
-        <hr/>
-
-        <?php get_template_part( 'components/cards', null, array(
-            'type' => 'event',
-            ''
-        )) ?>
-
-        <div>
-            <a class="btn" href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>">Bekijk al de Posts</a>
-            <a class="btn" href="<?php echo site_url('blog'); ?>">Naar de blog pagina</a>
+            </div>
         </div>
     </div>
 
-    <?php get_footer(); ?>
+    <!-- <div>
+        <?php the_content() ?>
+    </div> -->
+</div>
+<div class="container">
+    <!-- <h2 class="font--serif mb-4">Three easy steps</h2> -->
+    <div class="row">
+        <div class="col d-flex">
+            <h4 class="mb-0 font--serif color--chocolat me-3">1<br>— </h4>
+            <div>
+                <h4 class="mb-0 font--serif color--chocolat">Choose</h4>
+                <p class="mb-0 label color--coffee">Choose a local merchant</p>
+            </div>
+        </div>
+        <div class="col d-flex">
+            <h4 class="mb-0 font--serif color--chocolat me-3">2<br>— </h4>
+            <div>
+                <h4 class="mb-0 font--serif color--chocolat">Buy</h4>
+                <p class="mb-0 label color--coffee">Buy a voucher</p>
+            </div>
+        </div>
+        <div class="col d-flex">
+            <h4 class="mb-0 font--serif color--chocolat me-3">3<br>—</h4>
+            <div>
+                <h4 class="mb-0 font--serif color--chocolat">Use</h4>
+                <p class="mb-0 label color--coffee">Use your voucher when possible</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container my-5 py-5">
+    <a href="/shop" class="link link--center-line mx-auto">
+        <span class="link__prepend">visit the store</span>
+        Find more vouchers
+    </a>
+</div>
+
+<?php get_footer(); ?>
 

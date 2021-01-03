@@ -581,6 +581,63 @@ textarea,
   clip: rect(0, 0, 0, 0);
   position: absolute;
 }
+.container {
+  max-width: unset;
+  padding: 0 6vw;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: unset;
+    padding: 0 7vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: unset;
+    padding: 0 9vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: unset;
+    padding: 0 10vw;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: unset;
+    padding: 0 16vw;
+  }
+}
+
+.font--serif {
+  font-family: oxtail, serif;
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.color--latte,
+.color--latte * {
+  color: #D7A77B;
+}
+
+.color--coffee,
+.color--coffee * {
+  color: #88603d;
+}
+
+.color--chocolat,
+.color--chocolat * {
+  color: #564033;
+}
+
 /*
 Theme Name: Go Local
 Author: Lennert De Ryck
@@ -593,8 +650,10 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-* {
-  transition: all 0.2s ease;
+*,
+*::after,
+*::before {
+  transition: all 0.3s ease;
 }
 
 html,
@@ -603,10 +662,41 @@ body {
 }
 
 body {
+  position: relative;
+}
+
+body::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-image: url("/wp-content/themes/go-local/assets/swirl_V3@4x.png");
   background-position: -19px -200px;
   background-size: 40%;
   background-repeat: no-repeat;
+  z-index: -2;
+}
+
+body::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #cfe7f1 0%, rgba(207, 231, 241, 0.125087535) 100%);
+  z-index: -3;
+}
+
+a,
+a:hover {
+  color: inherit;
+}
+
+ul {
+  padding: 0;
 }
 
 .w-full {
@@ -690,7 +780,6 @@ body .back {
 
 body .hero {
   width: 100%;
-  height: 350px;
 }
 
 body .hero img {
@@ -785,5 +874,222 @@ body {
   border-radius: 0.25rem;
   text-decoration: none;
   margin: 1rem 0;
+}
+
+.products .vouchers:nth-child(3n+1) .voucher::after {
+  background-color: black;
+}
+
+.products .vouchers:nth-child(3n+2) .voucher::after {
+  background-color: #88603d;
+}
+
+.products .vouchers:nth-child(3n) .voucher::after {
+  background-color: #D7A77B;
+}
+
+.vouchers__wrapper {
+  max-width: 100vw;
+  overflow-x: scroll;
+  overflow-y: visible;
+  scrollbar-width: 0;
+}
+
+.vouchers__wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.vouchers__variations {
+  padding: 30px 0 50px 0;
+  display: inline-flex;
+  gap: 3rem;
+}
+
+.voucher {
+  position: relative;
+  display: block;
+  max-width: 297.5px;
+  min-width: 297.5px;
+  height: 192.5px;
+  box-shadow: 0px 8px 30px 12px rgba(0, 0, 0, 0.23);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.voucher * {
+  margin-bottom: 0;
+  color: white;
+}
+
+.voucher::before {
+  content: " ";
+  position: absolute;
+  height: 200%;
+  width: 100%;
+  background-image: url("/wp-content/themes/go-local/assets/swirl_V3@4x.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotate(-55deg) translate(46%, -5%);
+  filter: saturate(1.4);
+  overflow: visible;
+  z-index: -1;
+}
+
+.voucher::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -2;
+  background-color: black;
+}
+
+.voucher__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.4rem;
+  width: 100%;
+  height: 100%;
+  max-width: calc(100% - 50px);
+}
+
+.voucher__seller {
+  font-family: oxtail, serif;
+  line-height: 1.1rem;
+}
+
+.voucher__value-wrapper {
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  border: 1px solid white;
+  border-radius: 100%;
+  font-family: oxtail, serif;
+}
+
+.voucher__value-wrapper h5 {
+  margin-bottom: -10px;
+}
+
+.voucher--theme-coffee::after {
+  background-color: #D7A77B;
+}
+
+.hero {
+  padding: 4rem 0;
+}
+
+.hero__title {
+  font-family: oxtail, serif;
+  margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: grey;
+}
+
+.hero--front-page {
+  margin-bottom: 100px;
+}
+
+.hero__voucher-preview {
+  position: absolute;
+  left: 0;
+  top: 150px;
+  z-index: 1;
+}
+
+.hero__voucher-preview:hover .vouchers__wrapper {
+  padding-left: 67vw;
+}
+
+.hero__voucher-preview .vouchers__wrapper {
+  padding-left: 70vw;
+}
+
+.badge {
+  all: inherit;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #D7A77B;
+  border-radius: 1000px;
+}
+
+.badge__prepend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.badge--coffee {
+  background-color: #88603d;
+}
+
+.badge--coffee * {
+  color: white;
+}
+
+.link {
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.link--center-line {
+  position: relative;
+  text-align: center;
+  color: #564033;
+  font-family: oxtail, serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.link--center-line:hover *,
+.link--center-line:hover {
+  color: #70b4c5;
+}
+
+.link--center-line:hover::after {
+  background-color: #70b4c5;
+}
+
+.link--center-line::after {
+  content: " ";
+  position: absolute;
+  top: calc(100% + .4rem);
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background-color: #564033;
+}
+
+.link--center-line .link__prepend {
+  display: block;
+  text-align: center;
+  opacity: 0.6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: europa, sans-serif;
 }
 

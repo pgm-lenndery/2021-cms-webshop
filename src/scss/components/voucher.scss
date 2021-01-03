@@ -1,0 +1,123 @@
+.products {    
+    .vouchers:nth-child(3n+1) .voucher {
+        &::after {
+            background-color: black;
+        }
+    }
+    
+    .vouchers:nth-child(3n+2) .voucher {
+        &::after {
+            background-color: #88603d;
+        }
+    }
+    
+    .vouchers:nth-child(3n) .voucher {
+        &::after {
+            background-color: #D7A77B;
+        }
+    }
+}
+
+
+.vouchers {
+    &__wrapper {
+        max-width: 100vw;
+        overflow-x: scroll;
+        overflow-y: visible;
+        scrollbar-width: 0;
+        // margin: 0 2Rem;
+        // padding: 0 3rem;
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    
+    
+    &__variations {
+        padding: 30px 0 50px 0;
+        display: inline-flex;
+        gap: 3rem;
+    }
+}
+
+.voucher {
+    $sizeFactor: 3.5;
+    
+    position: relative;
+    display: block;
+    max-width: 85px*$sizeFactor;
+    min-width: 85px*$sizeFactor;
+    height: 55px*$sizeFactor;
+    box-shadow: 0px 8px 30px 12px rgb(0 0 0 / 23%);
+    border-radius: 16px;
+    overflow: hidden;
+    
+    * {
+        margin-bottom: 0;
+        color: white
+    }
+    
+    &::before {
+        content: " ";
+        position: absolute;
+        height: 200%;
+        width: 100%;
+        background-image: url('/wp-content/themes/go-local/assets/swirl_V3@4x.png');
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        transform: rotate(-55deg) translate(46%, -5%);
+        filter: saturate(1.4);
+        overflow: visible;
+        z-index: -1;
+    }
+    
+    &::after {
+        content: ' ';
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        z-index: -2;
+        background-color: black;
+    }
+    
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.4rem;
+        width: 100%;
+        height: 100%;
+        max-width: calc(100% - 50px);
+    }
+    
+    &__seller {
+        @include fontSerif;
+        line-height: 1.1rem;
+    }
+    
+    &__value-wrapper {
+        position: absolute;
+        top: 50%; right: -5%;
+        width: 100px; height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(-50%);
+        border: 1px solid white;
+        border-radius: 100%;
+        @include fontSerif;
+        
+        h5 {
+            margin-bottom: -10px;
+        }
+    }
+    
+    &--theme-coffee {
+        &::after {
+            background-color: #D7A77B;
+        }
+    }
+}

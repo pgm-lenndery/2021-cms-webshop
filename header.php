@@ -22,12 +22,12 @@
                         'theme_location' => 'header-nav'
                     )) ?>
                 </nav>
-                <?php if(is_user_logged_in()){?>
+                <!-- <?php if(is_user_logged_in()){?>
                         <span><?php get_avatar(get_current_user_id(), 60)?>
                     <a href="<?= wp_logout_url()?>">Logout</a>
                 <?php } else { ?>
                     <a href="<?= wp_registration_url()?>">SignUp</a>
-                <?php } ?>
+                <?php } ?> -->
             </div>
         </header>
         <main>

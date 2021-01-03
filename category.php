@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-
+<h1>category.php</h1>
 <div class="container">
     <h1>
         <?php single_cat_title(); ?> categories

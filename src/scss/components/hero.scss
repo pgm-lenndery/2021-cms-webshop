@@ -1,0 +1,36 @@
+.hero {
+    padding: 4rem 0;
+    
+    &__title {
+        @include fontSerif;
+        margin-bottom: 1rem;
+    }
+    
+    &__subtitle {
+        font-size: 1rem;
+        @include label;
+        color: grey;
+    }
+    
+    // FRONT PAGE
+    &--front-page {
+        margin-bottom: 100px;
+    }
+    
+    &__voucher-preview {
+        position: absolute;
+        left: 0;
+        top: 150px;
+        z-index: 1;
+        
+        &:hover {
+            .vouchers__wrapper {
+                padding-left: 67vw;
+            }
+        }
+        
+        .vouchers__wrapper {
+            padding-left: 70vw;
+        }
+    }
+}

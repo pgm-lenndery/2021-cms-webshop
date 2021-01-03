@@ -17,7 +17,9 @@ $white: #fff;
 $yellow: #e7bd00;
 
 * {
-    transition: all .2s ease;
+    &, &::after, &::before {
+        transition: all .3s ease;
+    }
 }
 
 html, body {
@@ -25,10 +27,37 @@ html, body {
 }
 
 body {
-    background-image: url('/wp-content/themes/go-local/assets/swirl_V3@4x.png');
-    background-position: -19px -200px;
-    background-size: 40%;
-    background-repeat: no-repeat;
+    position: relative;
+    // z-index: 1;
+    
+    &::before {
+        content: ' ';
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        background-image: url('/wp-content/themes/go-local/assets/swirl_V3@4x.png');
+        background-position: -19px -200px;
+        background-size: 40%;
+        background-repeat: no-repeat;
+        z-index: -2;
+    }
+    
+    &::after {
+        content: ' ';
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        background: linear-gradient(180deg, rgba(207,231,241,1) 0%, rgba(207,231,241,0.1250875350140056) 100%);
+        z-index: -3;
+    }
+}
+
+a, a:hover {
+    color: inherit;
+}
+
+ul {
+    padding: 0;
 }
 
 .w-full {
@@ -113,7 +142,7 @@ body {
 
     .hero {
         width: 100%;
-        height: 350px;
+
         img {
             object-fit: cover;
             width: 100%;

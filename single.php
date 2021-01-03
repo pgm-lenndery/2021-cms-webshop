@@ -21,6 +21,7 @@
     </div>
 
     <div>
+        <h2>LELLEL</h2>
         <h1><?php the_title() ?></h1>
 
         <?php if(has_excerpt()) { ?>

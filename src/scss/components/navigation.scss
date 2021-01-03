@@ -3,7 +3,7 @@
 }
 
 .navigation .menu {
-    font-family: oxtail, serif;
+    @include fontSerif;
     font-weight: 400;
     font-size: 1.1rem;
     font-style: normal;

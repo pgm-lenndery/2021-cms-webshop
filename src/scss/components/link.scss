@@ -1,0 +1,39 @@
+.link {
+    display: block;
+    width: fit-content;
+    
+    &--center-line {
+        position: relative;
+        text-align: center;
+        color: $chocolat;
+        @include fontSerif;
+        @include label;
+        
+        &:hover *, &:hover {
+            color: $macaron600;
+        }
+        
+        &:hover::after {
+            background-color: $macaron600;
+        }
+        
+        &::after {
+            content: ' ';
+            position: absolute;
+            top: calc(100% + .4rem); left: 10%;
+            right: 10%;
+            height: 1px;
+            background-color: $chocolat;
+        }
+        
+        .link__prepend {
+            display: block;
+            text-align: center;
+            opacity: .6;
+            font-size: .8rem;
+            font-weight: 700;
+            @include label;
+            @include fontSans;
+        }
+    }
+}
