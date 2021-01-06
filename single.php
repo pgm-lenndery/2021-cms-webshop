@@ -3,7 +3,7 @@
 <?php get_template_part('components/hero') ?>
 
 <div class="container">
-    <a class="btn back" href="<?php echo get_permalink(get_option('page_for_posts')) ?>">
+    <a class="btn back" href="<?= get_permalink(get_option('page_for_posts')) ?>">
         Ga terug
     </a>
 
@@ -21,7 +21,6 @@
     </div>
 
     <div>
-        <h2>LELLEL</h2>
         <h1><?php the_title() ?></h1>
 
         <?php if(has_excerpt()) { ?>

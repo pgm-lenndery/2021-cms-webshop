@@ -1,0 +1,53 @@
+.form {
+    --accent: #70b4c5;
+    --accent-op:#3f656f;
+    
+    &-theme--coffee {
+        --accent: #88603d;
+        --accent-op:#564033;
+    }
+    
+    &__input {
+        display: block;
+    
+        input {
+            all: unset;
+            padding: .4rem 0rem .4rem 0rem;
+            border-bottom: 2px solid #564033;
+            @include fontSerif;
+            
+            &::placeholder {
+                color: var(--accent-op) !important;
+                opacity: 1;
+            }
+        }
+    }
+    
+    &__input-wrapper {
+        display: flex;
+        border-bottom: 2px solid var(--accent-op);
+        
+        &:focus-within {
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        input {
+            border: none;
+        }
+        
+        .form__input {
+            flex: 1;
+        }
+        
+        button {
+            all: unset;
+            padding: .4rem .6rem .4rem calc(.6rem + 4px);
+            width: fit-content;
+            @include label;
+            font-weight: bold;
+            letter-spacing: 3px;
+            font-size: .8rem;
+            color: var(--accent) !important;
+        }
+    }
+}

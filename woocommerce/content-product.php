@@ -29,7 +29,6 @@
     $title = get_the_title( $shop );
     $address = get_field( 'address', $shop );
     $shop_intro = get_field( 'introduction', $shop );
-    
 ?>
 
 

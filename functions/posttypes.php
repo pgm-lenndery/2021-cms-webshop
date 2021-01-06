@@ -2,7 +2,6 @@
 
 // Our custom post type function
 function create_posttype() {
- 
     register_post_type( 'shops',
     // CPT Options
         array(
@@ -18,6 +17,25 @@ function create_posttype() {
             'show_in_nav_menus' => true,
             'supports' => array(
                 'title', 
+                'custom-fields'
+            )
+        )
+    );
+    register_post_type( 'Banners',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Banners' ),
+                'singular_name' => __( 'Banner' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'banners'),
+            'show_in_rest' => true,
+            'menu_icon' => 'dashicons-bell',
+            'show_in_nav_menus' => true,
+            'supports' => array(
+                'title',
                 'custom-fields'
             )
         )

@@ -1,0 +1,29 @@
+footer {
+    // padding: 4rem 4rem 1.5rem 4rem;
+    padding: 0 4rem;
+    
+    hr {
+        background-color: $macaron;
+        opacity: .6;
+    }
+    
+    .custom-logo-link img {
+        filter: invert(1);
+        height: 50px;
+    }
+    
+    .navigation {
+        .menu {
+            --spacer-color: #70b4c5;
+        }
+        
+        &.small .menu {
+            --item-spacing: 1rem;
+            
+            li {
+                border: none;
+                opacity: .8;
+            }
+        }
+    }
+}

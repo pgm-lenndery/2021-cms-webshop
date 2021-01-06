@@ -3,6 +3,10 @@
 }
 
 .navigation .menu {
+    --item-spacing: 2.2rem;
+    --spacer-color: black;
+    
+    margin: 0 calc(var(--item-spacing) * -1) ;
     @include fontSerif;
     font-weight: 400;
     font-size: 1.1rem;
@@ -16,7 +20,7 @@
     }
     
     li {
-        padding: 0 2.2rem;
+        padding: 0 var(--item-spacing);
         margin-right: 0;
         
         &:hover {
@@ -24,7 +28,7 @@
         }
         
         &:not(:last-child) {
-            border-right: 2px solid black;
+            border-right: 2px solid var(--spacer-color);
         }
         
         &.current-menu-item a {
@@ -37,4 +41,11 @@
             padding: .3rem 0;
         }
     }
+}
+
+.navigation.small .menu {
+    --item-spacing: 1.4rem;
+    
+    font-size: .8rem;
+    @include fontSans;
 }

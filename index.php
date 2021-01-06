@@ -1,6 +1,6 @@
 <?php get_header() ?>
     <div class="container">
-        <h1>Elections 2020</h1>
+        <h1>Go local</h1>
         <?php the_title() ?>
         <?php
             while (have_posts()) { the_post() ?>
