@@ -25,6 +25,7 @@
     }
     
     $shop = get_field('shop')[0];
+
     $shop_permalink = get_permalink( $shop );
     $title = get_the_title( $shop );
     $address = get_field( 'address', $shop );

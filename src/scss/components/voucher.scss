@@ -11,7 +11,7 @@
         }
     }
     
-    .vouchers:nth-child(3n) .voucher {
+    .vouchers:nth-child(3n+3) .voucher {
         &::after {
             background-color: #D7A77B;
         }

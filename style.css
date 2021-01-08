@@ -614,6 +614,53 @@ textarea,
   }
 }
 
+.flexgrid.flexgrid--v2 {
+  --columns: 3;
+  --gap: 2rem;
+  display: grid;
+  grid-gap: var(--gap);
+  grid-template-columns: repeat(var(--columns), calc(100%/var(--columns) - ((var(--gap) * (var(--columns) - 1)) / var(--columns))));
+  grid-template-rows: none;
+}
+
+.flexgrid.flexgrid--v2 .flexgrid__item {
+  word-break: break-all;
+}
+
+.maronsy {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.maronsy__item {
+  margin-bottom: 2rem;
+}
+
+.maronsy[data-justify-columns=flex-start] {
+  justify-content: flex-start;
+}
+
+.maronsy[data-justify-columns=flex-end] {
+  justify-content: flex-end;
+}
+
+.maronsy[data-justify-columns=center] {
+  justify-content: center;
+}
+
+.maronsy[data-justify-columns=space-between] {
+  justify-content: space-between;
+}
+
+.maronsy[data-justify-columns=space-around] {
+  justify-content: space-around;
+}
+
+.maronsy[data-justify-columns=space-evenly] {
+  justify-content: space-evenly;
+}
+
 .font--serif {
   font-family: oxtail, serif;
 }
@@ -698,6 +745,11 @@ a:hover {
 ul {
   padding: 0;
   margin: 0;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 hr:not([size]) {
@@ -926,7 +978,7 @@ footer .navigation.small .menu li {
   background-color: #88603d;
 }
 
-.products .vouchers:nth-child(3n) .voucher::after {
+.products .vouchers:nth-child(3n+3) .voucher::after {
   background-color: #D7A77B;
 }
 
@@ -1263,6 +1315,15 @@ footer .navigation.small .menu li {
   margin-top: 1.4rem;
 }
 
+.sidemenu__section {
+  max-height: 0vh;
+  overflow: hidden;
+}
+
+.sidemenu__section.sesam-show {
+  max-height: 100vh;
+}
+
 .sidemenu.sesam-show {
   transform: translateX(0%);
 }
@@ -1292,6 +1353,10 @@ footer .navigation.small .menu li {
   margin-bottom: 0;
 }
 
+.layout--page .page__content {
+  max-width: 700px;
+}
+
 .layout--page .page__content * {
   font-family: oxtail, serif;
 }
@@ -1306,11 +1371,5 @@ footer .navigation.small .menu li {
   margin-top: 4rem;
   margin-bottom: 2rem;
   color: #564033;
-}
-
-@media (min-width: 1400px) {
-  .layout--page .container {
-    padding-right: 44rem;
-  }
 }
 

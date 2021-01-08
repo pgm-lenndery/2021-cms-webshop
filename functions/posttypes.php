@@ -41,5 +41,23 @@ function create_posttype() {
         )
     );
 }
+
+function shops_api_add_cf() {
+    register_rest_field(
+        'shops', 
+        'custom_fields',
+        array(
+            'get_callback'    => 'get_custom_fields',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+
+function get_custom_fields( $object, $field_name, $request ) {
+    return get_fields($object->ID);
+}
+
 // Hooking up our function to theme setup
 add_action( 'init', 'create_posttype' );
+add_action( 'rest_api_init', 'shops_api_add_cf' );

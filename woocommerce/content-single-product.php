@@ -18,16 +18,13 @@
 	defined( 'ABSPATH' ) || exit;
 
 	global $product;
-
+	
 	$shop = get_field('shop')[0];
+	// print_r($shop);
 	$shop_permalink = get_permalink( $shop );
     $shop_title = get_the_title( $shop );
     $address = get_field( 'address', $shop );
     $shop_intro = get_field( 'introduction', $shop );
-	
-	function ugh () {
-		echo '<h1>UGH</h1>';
-	}
  
 	/**
 	 * Hook: woocommerce_before_single_product.
@@ -69,8 +66,6 @@
 				 * @hooked WC_Structured_Data::generate_product_data() - 60
 				 */
 				do_action( 'woocommerce_single_product_summary' );
-				// add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 10 )
-				
 			?>
 			<a href="<?= get_permalink( $product->get_id() ) . "?value=5"; ?>" class="voucher voucher--theme-dark">
 				<div class="voucher__body">

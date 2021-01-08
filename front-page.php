@@ -1,4 +1,7 @@
 <?php 
+    /**
+     * TODO: Replace get_posts with WP_Query
+     */
     $args = array( 'post_type' => 'product', 'posts_per_page' => 10 );
     $query = get_posts($args);
     $random_index = array_rand($query, 1);
@@ -9,7 +12,7 @@
     
     $product = get_product($product_main);
     $product_variations = $product->get_available_variations();   
-    $limited_products = array_slice($product_variations, 0, 3) 
+    $limited_products = array_slice($product_variations, 0, 3);
 ?>
 
 <?php get_header(); ?>
@@ -28,9 +31,8 @@
                     <div class="vouchers__variations">
                         <?php 
                             foreach( $limited_products as $prod ): 
-                            // print_r($products)
                         ?>
-                            <a href="<?= get_permalink( $product->get_id() ) . "?value={$prod['display_regular_price']}"; ?>" class="voucher voucher--theme-dark">
+                            <a href="<?= get_permalink( $shop->ID ) . "?value={$prod['display_regular_price']}"; ?>" class="voucher voucher--theme-dark">
                                 <div class="voucher__body">
                                     <h4 class="voucher__seller"><?= $shop->post_title ?></h4>
                                     <p><?= $address['place'] ?></p>

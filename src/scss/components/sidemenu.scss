@@ -56,6 +56,15 @@
         }
     }
     
+    &__section {
+        max-height: 0vh;
+        overflow: hidden;
+        
+        &.sesam-show {
+            max-height: 100vh;
+        }
+    }
+    
     &.sesam-show {
         transform: translateX(0%);
         

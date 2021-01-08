@@ -1,6 +1,8 @@
 .layout--page {
     .page {
         &__content {
+            max-width: 700px;
+            
             * { @include fontSerif; }
             
             p {
@@ -19,8 +21,8 @@
     
 }
 
-@media (min-width: 1400px) {
-    .layout--page .container {
-        padding-right: 44rem;
-    }
-}
+// @media (min-width: 1400px) {
+//     .layout--page .container {
+//         padding-right: 44rem;
+//     }
+// }

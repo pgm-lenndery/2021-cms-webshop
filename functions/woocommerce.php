@@ -16,8 +16,9 @@ function mytheme_add_woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
 
-function zgqzerg () {
-    echo 'lel';
+function woocommerce_template_single_title () {
+    global $post;
+    the_title();
 }
 
 function beforeProductLoopStart() {
@@ -98,8 +99,7 @@ add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 add_action( 'woocommerce_before_shop_loop', 'beforeProductLoopStart', 10 );
 add_action( 'woocommerce_before_shop_loop', 'wrapProductDropdown', 10 );
 add_action( 'woocommerce_after_shop_loop', 'afterProductLoop', 10 );
-add_action( 'woocommerce_single_product_summary', 'zgqzerg', 10 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 30 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 30 );

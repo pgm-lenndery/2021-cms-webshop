@@ -3349,11 +3349,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sesam_collapse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sesam-collapse */ "../node_modules/sesam-collapse/dist/index.min.js");
 /* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! feather-icons */ "../../node_modules/feather-icons/dist/feather.js");
 /* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(feather_icons__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _maronsy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./maronsy */ "./src/js/maronsy.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -3377,6 +3379,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
       target: 'sidemenu',
       action: 'hide'
     });
+    Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["eventCallback"])('.sidemenu nav', function () {
+      Object(sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesam"])({
+        target: 'sidemenu',
+        action: 'show'
+      });
+    }, false);
   });
   document.addEventListener('submit', function (e) {
     Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["eventCallback"])('#searchForm', /*#__PURE__*/function () {
@@ -3415,6 +3423,32 @@ document.addEventListener('DOMContentLoaded', function (event) {
       };
     }(), false);
   });
+  var sizes = [{
+    breakpoint: 0,
+    options: {
+      columns: 1
+    }
+  }, {
+    breakpoint: 576,
+    options: {
+      columns: 2
+    }
+  }, {
+    breakpoint: 992,
+    options: {
+      columns: 3
+    }
+  }, {
+    breakpoint: 1500,
+    options: {
+      columns: 4,
+      justifyColumns: 'center'
+    }
+  }];
+  new _maronsy__WEBPACK_IMPORTED_MODULE_4__["Maronsy"]({
+    sizes: sizes,
+    justifyColumns: 'flex-start'
+  }).init();
 });
 
 var fetchSearchQuery = /*#__PURE__*/function () {
@@ -3431,9 +3465,11 @@ var fetchSearchQuery = /*#__PURE__*/function () {
             data = _context2.sent;
             _context2.next = 5;
             return data.filter(function (_ref4) {
-              var rendered = _ref4.title.rendered;
+              var rendered = _ref4.title.rendered,
+                  place = _ref4.custom_fields.place;
               return unescape(rendered).toLowerCase().includes(query.toLowerCase());
-            });
+            } // || place?.includes(await query)
+            );
 
           case 5:
             return _context2.abrupt("return", _context2.sent);
@@ -3453,18 +3489,194 @@ var fetchSearchQuery = /*#__PURE__*/function () {
 
 var displaySearchResults = function displaySearchResults(data) {
   var $results = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('#searchResults');
-  $results.innerHTML = '';
-  console.log(data);
-  if (!data) $results.innerHTML = '<h5>No results</h5>';else data.forEach(function (_ref5) {
-    var link = _ref5.link,
-        rendered = _ref5.title.rendered;
-    var $card = document.createElement('a');
-    $card.href = link;
-    $card.classList.add('card');
-    $card.innerHTML = "\n            <h5 class=\"card__title\">".concat(rendered, "</h5>\n            <div class=\"card__content\">\n                <p>Some content</p>\n            </div>\n        ");
-    $results.append($card);
-  });
+  $results.innerHTML = '<strong>loading</strong>';
+  if (!data) $results.innerHTML = '<h5>No results</h5>';else {
+    $results.innerHTML = '';
+    data.forEach(function (_ref5) {
+      var link = _ref5.link,
+          rendered = _ref5.title.rendered,
+          introduction = _ref5.custom_fields.introduction;
+      var $card = document.createElement('a');
+      $card.href = link;
+      $card.classList.add('card');
+      $card.innerHTML = "\n                <h5 class=\"card__title\">".concat(rendered, "</h5>\n                <div class=\"card__content\">").concat(introduction, "</div>\n            ");
+      $results.append($card);
+    });
+  }
 };
+
+/***/ }),
+
+/***/ "./src/js/maronsy.js":
+/*!***************************!*\
+  !*** ./src/js/maronsy.js ***!
+  \***************************/
+/*! exports provided: Maronsy */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Maronsy", function() { return Maronsy; });
+/* harmony import */ var cutleryjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cutleryjs */ "../node_modules/cutleryjs/dist/js/index.min.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var Maronsy = /*#__PURE__*/function () {
+  /**
+   * Optional parameters when initializing
+   * @param {object} arguments
+   */
+  function Maronsy(args) {
+    var _this = this;
+
+    _classCallCheck(this, Maronsy);
+
+    var options = _objectSpread({
+      columns: 3,
+      container: '.maronsy',
+      children: '.maronsy__item',
+      columnClass: 'maronsy__column',
+      responsive: true
+    }, args);
+
+    this.OPTIONS = options;
+    this.$container = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_0__["returnNode"])(options['container']);
+    this.$children = this.$container.querySelectorAll(options['children']); // if no container is defined, throw error
+
+    if (!this.$container) throw new Error('[Maronsy] Container couldn\'t be found'); // listen to window resize, reorder on resize
+
+    window.addEventListener('resize', function (_ref) {
+      var _ref$currentTarget = _ref.currentTarget,
+          width = _ref$currentTarget.innerWidth,
+          height = _ref$currentTarget.innerHeight;
+
+      _this.onResize({
+        width: width,
+        height: height
+      });
+    });
+  }
+
+  _createClass(Maronsy, [{
+    key: "init",
+    value: function init() {
+      this.onResize({
+        width: window.innerWidth
+      });
+    }
+  }, {
+    key: "getCurrentSize",
+    value: function getCurrentSize(width) {
+      var sizes = this.OPTIONS['sizes']; // sort breakpoints from big to small
+
+      sizes.sort(function (a, b) {
+        return b.breakpoint - a.breakpoint;
+      }); // find the breakpoint, closest to the current width
+
+      return sizes.find(function (_ref2) {
+        var breakpoint = _ref2.breakpoint;
+        return breakpoint <= width;
+      })['options'];
+    }
+  }, {
+    key: "createColumns",
+    value: function createColumns(items) {
+      var _this2 = this;
+
+      // remove current columns in container
+      var $currentColumns = this.$container.querySelectorAll('.maronsy__column');
+
+      _toConsumableArray($currentColumns).map(function (c) {
+        return c.remove();
+      }); // add items to fresh columns
+
+
+      items.map(function (i, index) {
+        // create column
+        var $column = document.createElement('div'); // add class
+
+        $column.classList.add(_this2.OPTIONS['columnClass']); // fil column with items
+
+        _toConsumableArray(i).map(function (item) {
+          return $column.append(item);
+        }); // apppend column to container
+
+
+        _this2.$container.append($column);
+      });
+    }
+  }, {
+    key: "loopChildren",
+    value: function loopChildren(args) {
+      var _this3 = this;
+
+      var options = _objectSpread({
+        columns: this.OPTIONS['columns']
+      }, args); // transfer children from columns back to container
+
+
+      _toConsumableArray(this.$children).map(function (i) {
+        return _this3.$container.append(i);
+      }); // create new empty array
+
+
+      var arr = new Array(options['columns']).fill(null); // get items in container, put in array
+
+      var items = arr.map(function (val, index) {
+        return _this3.$container.querySelectorAll("\n            ".concat(_this3.OPTIONS['children'], ":nth-child(").concat(options['columns'], "n+").concat(index + 1, ")\n        "));
+      }); // add children to columns
+
+      this.createColumns(items);
+    }
+  }, {
+    key: "onResize",
+    value: function onResize(_ref3) {
+      var width = _ref3.width;
+      var currentSizeOptions = this.getCurrentSize(width); // edit container
+
+      this.updateContainer(currentSizeOptions); // loop children with current size options
+
+      this.loopChildren(currentSizeOptions);
+    }
+  }, {
+    key: "updateContainer",
+    value: function updateContainer(sizeOptions) {
+      this.$container.setAttribute('data-justify-columns', sizeOptions['justifyColumns'] || this.OPTIONS['justifyColumns']);
+    }
+  }, {
+    key: "prepend",
+    value: function prepend() {// redefine children ...
+    }
+  }, {
+    key: "append",
+    value: function append() {// redefine children ...ç
+    }
+  }]);
+
+  return Maronsy;
+}();
 
 /***/ }),
 

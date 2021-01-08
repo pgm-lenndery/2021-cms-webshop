@@ -16,37 +16,44 @@
         <link rel="stylesheet" href="https://use.typekit.net/xyt4zrt.css"/>
     </head>
     <body>
-        <div class="sidemenu sesam-hidden" data-sesam-target="sidemenu">
+        <div class="sidemenu sesam-hidden" data-sesam-target="sidemenu" data-sesam-group="groupNameHere">
             <nav class="sidemenu__nav nav">
-                <ul data-sesam-trigger="sidemenu">
-                    <li class="nav__item"><i data-feather="shopping-cart"></i></li>
-                    <li class="nav__item"><i data-feather="user"></i></li>
-                    <li class="nav__item"><i data-feather="search"></i></li>
+                <ul>
+                    <li class="nav__item" data-sesam-trigger="cartSection"><i data-feather="shopping-cart"></i></li>
+                    <li class="nav__item" data-sesam-trigger="notificationSection"><i data-feather="user"></i></li>
+                    <li class="nav__item" data-sesam-trigger="searchSection"><i data-feather="search"></i></li>
                 </ul>
             </nav>
             <div class="sidemenu__wrapper">
                 <div class="sidemenu__content">
-                    <form id="searchForm" class="form form-theme--coffee mb-4">
-                        <div class="form__input-wrapper">
-                            <label class="form__input">
-                                <input type="text" name="search" placeholder="search a store" value="<?= $_GET['search'] ?>" required>
-                            </label>
-                            <button type="submit">Search</button>
-                        </div>
-                    </form>
-                    <div id="searchResults">
-                        
+                    <div class="sidemenu__section sesam-hidden" data-sesam-target="cartSection" data-sesam-parent="groupNameHere"> 
+                        <h4 class="sidemenu__title">Shopping cart</h4>
+                        <?php echo do_shortcode('[woocommerce_cart]') ?>
                     </div>
-                    <h4 class="sidemenu__title">Notifications</h4>
-                    <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                        <div class="card">
-                            <h5 class="card__title"><?php the_title(); ?></h5>
-                            <div class="card__content">
-                                <?= get_field( 'content', $post->ID ) ?>
+                    <div class="sidemenu__section sesam-hidden" data-sesam-target="notificationSection" data-sesam-parent="groupNameHere"> 
+                        <h4 class="sidemenu__title">Notifications</h4>
+                        <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                            <div class="card">
+                                <h5 class="card__title"><?php the_title(); ?></h5>
+                                <div class="card__content">
+                                    <?= get_field( 'content', $post->ID ) ?>
+                                </div>
                             </div>
-                        </div>
-                    <?php endwhile; ?>
-                    <?php wp_reset_postdata(); ?>
+                        <?php endwhile; ?>
+                        <?php wp_reset_postdata(); ?>
+                    </div>
+                    <div class="sidemenu__section sesam-hidden" data-sesam-target="searchSection" data-sesam-parent="groupNameHere">
+                        <h4 class="sidemenu__title">Search shops</h4>
+                        <form id="searchForm" class="form form-theme--coffee mb-4">
+                            <div class="form__input-wrapper">
+                                <label class="form__input">
+                                    <input type="text" name="search" placeholder="search a store" value="<?= $_GET['search'] ?>" required>
+                                </label>
+                                <button type="submit">Search</button>
+                            </div>
+                        </form>
+                        <div id="searchResults"><!-- search results will appear here --></div>
+                    </div>
                 </div>
             </div>
         </div>
