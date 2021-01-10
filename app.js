@@ -3448,8 +3448,28 @@ document.addEventListener('DOMContentLoaded', function (event) {
   // { breakpoint: 1502, options: { columns: 4, justifyColumns: 'center' }},
   ];
   Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('.maronsy.maronsy--single-shops') && new _maronsy__WEBPACK_IMPORTED_MODULE_4__["Maronsy"]({
-    sizesSingleShops: sizesSingleShops,
+    sizes: sizesSingleShops,
     justifyColumns: 'flex-start'
+  }).init();
+  var sizesBlog = [{
+    breakpoint: 0,
+    options: {
+      columns: 1
+    }
+  }, {
+    breakpoint: 760,
+    options: {
+      columns: 2
+    }
+  }, {
+    breakpoint: 1000,
+    options: {
+      columns: 2
+    }
+  }];
+  Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('.maronsy.maronsy--blog') && new _maronsy__WEBPACK_IMPORTED_MODULE_4__["Maronsy"]({
+    sizes: sizesBlog,
+    gap: '2rem'
   }).init();
 });
 /**
@@ -3512,7 +3532,7 @@ var displaySearchResults = function displaySearchResults(data) {
             introduction = _ref5.custom_fields.introduction;
         var $card = document.createElement('a');
         $card.href = link;
-        $card.classList.add('card');
+        $card.classList.add('card', 'card--search');
         $card.innerHTML = "\n                <h5 class=\"card__title\">".concat(rendered, "</h5>\n                <div class=\"card__content\">").concat(introduction, "</div>\n            ");
         $results.append($card);
       });
@@ -3572,6 +3592,7 @@ var Maronsy = /*#__PURE__*/function () {
       container: '.maronsy',
       children: '.maronsy__item',
       columnClass: 'maronsy__column',
+      justifyColumns: 'flex-start',
       responsive: true,
       gap: 0 + 'px'
     }, args);

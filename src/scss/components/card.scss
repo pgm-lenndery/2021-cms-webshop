@@ -2,10 +2,10 @@
     padding: 1rem;
     border: none;
     
-    &__title {
-        @include label;
-        font-size: 1rem;
-    }
+    // &__title {
+    //     @include label;
+    //     font-size: 1rem;
+    // }
     
     &__content {
         opacity: .7;
@@ -16,9 +16,25 @@
     }
 }
 
+.card--search {
+    .card__title {
+        @include label;
+        font-size: 1rem;
+    }
+}
+
 .card--blog {
     background-color: #ffffff61;
     backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 7px; 
+    
+    .card__title {
+        @include fontSerif;
+        // font-size: initial;
+    }
+    
+    .post-tags {
+        margin-top: 1rem;
+    }
 }

@@ -86,7 +86,7 @@
 					<?php
 						do_action( 'woocommerce_product_footer' );
 					?>
-					<a href="/shop" class="link link--center-line mx-auto mt-5">
+					<a href="<?= $shop_permalink ?>" class="link link--center-line mx-auto mt-5">
 						<span class="link__prepend">more info</span>
 						visit <?= $shop_title ?>
 					</a>

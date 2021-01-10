@@ -1,0 +1,14 @@
+.layout--product {
+    .page {
+        .woocommerce.add_to_cart_inline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none !important;
+            
+            .amount {
+                margin-right: 1rem;
+            }
+        }
+    } 
+}

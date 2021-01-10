@@ -1,17 +1,15 @@
 <?php 
-    /**
-     * TODO: Replace get_posts with WP_Query
-     */
-    $args = array( 'post_type' => 'product', 'posts_per_page' => 10 );
+    $args = array( 'post_type' => 'product' );
     $query = get_posts($args);
-    $random_index = array_rand($query, 1);
-    $product_main = $query[$random_index]->ID;    
+    $random_index = array_rand($query, 3);
+    $product = $query[$random_index[0]];
+    $product_main = get_product($query[$random_index[0]]->ID);
     
-    $shop = get_field( 'shop', $product_main )[0];
+    $shop_id = get_field( 'shop', $product )[0];
+    $shop = get_post($shop_id);
     $address = get_field( 'address', $shop->ID );
     
-    $product = get_product($product_main);
-    $product_variations = $product->get_available_variations();   
+    $product_variations = $product_main->get_available_variations();   
     $limited_products = array_slice($product_variations, 0, 3);
 ?>
 
@@ -31,8 +29,9 @@
                     <div class="vouchers__variations">
                         <?php 
                             foreach( $limited_products as $prod ): 
+                            // print_r($prod)
                         ?>
-                            <a href="<?= get_permalink( $shop->ID ) . "?value={$prod['display_regular_price']}"; ?>" class="voucher voucher--theme-dark">
+                            <a href="<?= get_permalink( $product_main->get_id() ) . "?value={$prod['display_regular_price']}&id=" . $prod['variation_id'] . '"'; ?>" class="voucher voucher--theme-dark">
                                 <div class="voucher__body">
                                     <h4 class="voucher__seller"><?= $shop->post_title ?></h4>
                                     <p><?= $address['place'] ?></p>
@@ -53,28 +52,28 @@
         <?php the_content() ?>
     </div> -->
 </div>
-<div class="container">
+<div class="container mt-5 mt-lg-0">
     <!-- <h2 class="font--serif mb-4">Three easy steps</h2> -->
     <div class="row">
-        <div class="col d-flex">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 d-flex">
             <h4 class="mb-0 font--serif color--chocolat me-3">1<br>— </h4>
             <div>
                 <h4 class="mb-0 font--serif color--chocolat">Choose</h4>
-                <p class="mb-0 label color--coffee">Choose a local merchant</p>
+                <p class="mb-0 label color--coffee">Pick a local merchant</p>
             </div>
         </div>
-        <div class="col d-flex">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 d-flex">
             <h4 class="mb-0 font--serif color--chocolat me-3">2<br>— </h4>
             <div>
                 <h4 class="mb-0 font--serif color--chocolat">Buy</h4>
-                <p class="mb-0 label color--coffee">Buy a voucher</p>
+                <p class="mb-0 label color--coffee">Get a voucher</p>
             </div>
         </div>
-        <div class="col d-flex">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 d-flex">
             <h4 class="mb-0 font--serif color--chocolat me-3">3<br>—</h4>
             <div>
                 <h4 class="mb-0 font--serif color--chocolat">Use</h4>
-                <p class="mb-0 label color--coffee">Use your voucher when possible</p>
+                <p class="mb-0 label color--coffee">Redeem your voucher when possible</p>
             </div>
         </div>
     </div>

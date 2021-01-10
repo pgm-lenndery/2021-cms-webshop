@@ -1,0 +1,19 @@
+.layout--shop {
+    .page {
+        &__content {
+            &, * { @include fontSerif; }
+            
+            p {
+                font-size: 1.2rem;
+                color: #687e84;
+                line-height: 1.9rem;
+            }
+            
+            h2 {
+                margin-top: 4rem;
+                margin-bottom: 2rem;
+                color: $chocolat;
+            }
+        }
+    } 
+}

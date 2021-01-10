@@ -11,6 +11,7 @@ export class Maronsy {
             container: '.maronsy',
             children: '.maronsy__item',
             columnClass: 'maronsy__column',
+            justifyColumns: 'flex-start',
             responsive: true,
             gap: 0 + 'px',
             ...args

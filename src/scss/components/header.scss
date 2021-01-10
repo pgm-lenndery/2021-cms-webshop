@@ -1,5 +1,75 @@
 header {
     .navigation {
         padding: 6rem 2rem;
+        
+        [data-sesam-trigger="headerMenu"] {
+            display: none;
+            background-color: transparent !important;
+            border: none;
+            font-size: 1.2rem;
+            color: $text !important;
+            @include label;
+            @include fontSerif;
+        }
     }
 }
+
+@media (max-width: 768px) {
+    header {
+        .container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            
+            [data-sesam-trigger="headerMenu"] {
+                display: block !important;
+            }
+            
+            .navigation-wrapper {
+                display: flex;
+                justify-content: space-between;
+                padding: 3rem 2rem;
+            }
+            
+            .navigation-items-wrapper {
+                overflow: hidden;
+                max-height: 0vh;
+                
+                &.sesam-show {
+                    max-height: 100vh;
+                    
+                    .menu li {
+                        opacity: 1;
+                    }
+                }
+            }
+            
+            .menu {
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 0;
+                padding: 1rem 4rem 1rem 2rem;
+                background-color: #b7ced8;
+                
+                li {
+                    padding: 0.5rem 0;
+                    opacity: 0;
+                    
+                    a { color: $macaron800; }
+                    
+                    &:not(:last-child) {
+                        border-right: none;
+                        border-bottom: 2px solid $text;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+

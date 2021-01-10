@@ -54,7 +54,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // { breakpoint: 1190, options: { columns: 3 }},
         // { breakpoint: 1502, options: { columns: 4, justifyColumns: 'center' }},
     ]
-    returnNode('.maronsy.maronsy--single-shops') && new Maronsy({ sizesSingleShops, justifyColumns: 'flex-start' }).init();
+    returnNode('.maronsy.maronsy--single-shops') && new Maronsy({ sizes: sizesSingleShops, justifyColumns: 'flex-start' }).init();
+    
+    const sizesBlog = [
+        { breakpoint: 0, options: { columns: 1 }},
+        { breakpoint: 760, options: { columns: 2 }},
+        { breakpoint: 1000, options: { columns: 2 }},
+    ]
+    returnNode('.maronsy.maronsy--blog') && new Maronsy({ sizes: sizesBlog, gap: '2rem' }).init();
 });
 
 /**
@@ -91,7 +98,7 @@ const displaySearchResults = data => {
         data.forEach(({ link, title: { rendered }, custom_fields: { introduction } }) => {
             const $card = document.createElement('a');
             $card.href = link;
-            $card.classList.add('card');
+            $card.classList.add('card', 'card--search');
             $card.innerHTML = `
                 <h5 class="card__title">${ rendered }</h5>
                 <div class="card__content">${ introduction }</div>

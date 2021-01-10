@@ -5,7 +5,7 @@
     gap: var(--gap);
     
     &__item {
-        margin-bottom: 2rem;
+        margin-bottom: var(--gap);
     }
     
     &__column {
@@ -18,4 +18,10 @@
     &[data-justify-columns="space-between"] {justify-content: space-between;}
     &[data-justify-columns="space-around"] {justify-content: space-around;}
     &[data-justify-columns="space-evenly"] {justify-content: space-evenly;}
+    
+    &--blog {
+        .maronsy__column {
+            width: 100%;
+        }
+    }
 }
