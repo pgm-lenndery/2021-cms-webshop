@@ -1,9 +1,16 @@
-.btn {
+
+.btn, .button, button {
     display: inline-block;
-    background-color: $yellow;
-    color: $white;
-    padding: 1rem;
+    padding: .5rem 1rem !important;
     border-radius: 0.25rem;
     text-decoration: none;
-    margin: 1rem 0;
+    // margin: 1rem 0;
+    background-color: $macaron !important;
+    color: white !important;
+}
+
+.form__input-wrapper button {
+    background-color: transparent !important;
+    padding: inherit !important;
+    color: inherit;
 }

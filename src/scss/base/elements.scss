@@ -1,0 +1,18 @@
+select, input, textarea {
+    &, &:focus, &:focus-within, &:active {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+
+select {
+    padding: .3rem;
+    border-radius: 5px;
+    color: grey;
+    border: none;
+    @include label;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: .9rem;
+}

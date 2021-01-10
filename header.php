@@ -47,12 +47,18 @@
                         <form id="searchForm" class="form form-theme--coffee mb-4">
                             <div class="form__input-wrapper">
                                 <label class="form__input">
-                                    <input type="text" name="search" placeholder="search a store" value="<?= $_GET['search'] ?>" required>
+                                    <input type="text" name="search" placeholder="name of a store" value="<?= $_GET['search'] ?>" required>
                                 </label>
                                 <button type="submit">Search</button>
                             </div>
                         </form>
-                        <div id="searchResults"><!-- search results will appear here --></div>
+                        <div id="searchResults">
+                            <div class="d-flex align-items-center justify-content-center color--coffee opacity--75 mt-5">
+                                <i data-feather="search" class="me-2"></i>
+                                <strong class="text-center label small">Results will appear here</strong>
+                            </div>
+                            <!-- search results will appear here -->
+                        </div>
                     </div>
                 </div>
             </div>

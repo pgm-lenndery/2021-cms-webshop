@@ -16,9 +16,25 @@ function mytheme_add_woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
 
-function woocommerce_template_single_title () {
+function productHeader () {
     global $post;
-    the_title();
+    $product = get_product( $_GET['id'] );
+    $shop = get_field('shop')[0];
+    $shop_title = get_the_title( $shop );
+    $shop_intro = get_field( 'introduction', $shop );
+    
+    // the title
+    echo '<h1 class="mb-0 font--serif text-center">';
+        echo $shop_title;
+    echo '</h1>';
+    echo '<p class="text-center">';
+        echo $shop_intro;
+    echo '</p>';
+}
+
+function productFooter () {
+    global $post;
+    echo do_shortcode('[add_to_cart id="' . $_GET['id'] . '"]');
 }
 
 function beforeProductLoopStart() {
@@ -99,7 +115,8 @@ add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 add_action( 'woocommerce_before_shop_loop', 'beforeProductLoopStart', 10 );
 add_action( 'woocommerce_before_shop_loop', 'wrapProductDropdown', 10 );
 add_action( 'woocommerce_after_shop_loop', 'afterProductLoop', 10 );
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+add_action( 'woocommerce_product_header', 'productHeader', 5 );
+add_action( 'woocommerce_product_footer', 'productFooter', 5 );
 
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 30 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );

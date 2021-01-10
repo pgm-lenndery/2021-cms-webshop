@@ -3,7 +3,7 @@ import { returnNode } from 'cutleryjs';
 export class Maronsy {
     /**
      * Optional parameters when initializing
-     * @param {object} arguments
+     * @param {object} options
      */
     constructor (args) {
         const options = {
@@ -12,6 +12,7 @@ export class Maronsy {
             children: '.maronsy__item',
             columnClass: 'maronsy__column',
             responsive: true,
+            gap: 0 + 'px',
             ...args
         }
         
@@ -30,7 +31,7 @@ export class Maronsy {
             }
         );
     }
-    
+
     init () {
         this.onResize({ width: window.innerWidth })
     }
@@ -102,19 +103,34 @@ export class Maronsy {
     }
     
     updateContainer (sizeOptions) {
-
         this.$container.setAttribute(
             'data-justify-columns',
             sizeOptions['justifyColumns'] || this.OPTIONS['justifyColumns'],
         )
+        this.$container.style.setProperty(
+            '--gap', 
+            sizeOptions['gap'] || this.OPTIONS['gap']
+        )
     }
     
-    prepend () {
+    /**
+     * Add an item at the top of the container
+     * @param {node} item The item that has to be added to the container
+     */
+    prepend (item) {
         // redefine children ...
+        // add item to container
+        // onResize
     }
     
-    append () {
-        // redefine children ...ç
+    /**
+     * Add an item at the bottom of the container
+     * @param {node} item The item that has to be added to the container
+     */
+    append (item) {
+        // redefine children ...
+        // add item to container
+        // onResize
     }
 }
 

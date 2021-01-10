@@ -2,43 +2,65 @@
     height: 65px;
 }
 
-.navigation .menu {
-    --item-spacing: 2.2rem;
-    --spacer-color: black;
-    
-    margin: 0 calc(var(--item-spacing) * -1) ;
-    @include fontSerif;
-    font-weight: 400;
-    font-size: 1.1rem;
-    font-style: normal;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    
-    &:hover {
-        li { opacity: .5;}
-    }
-    
-    li {
-        padding: 0 var(--item-spacing);
-        margin-right: 0;
+.navigation {
+    .menu {
+        --item-spacing: 2.2rem;
+        --spacer-color: black;
+        
+        margin: 0 calc(var(--item-spacing) * -1) ;
+        @include fontSerif;
+        font-weight: 400;
+        font-size: 1.1rem;
+        font-style: normal;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 5px;
         
         &:hover {
-            opacity: 1;
+            li { opacity: .5;}
         }
         
-        &:not(:last-child) {
-            border-right: 2px solid var(--spacer-color);
+        li {
+            padding: 0 var(--item-spacing);
+            margin-right: 0;
+            
+            &:hover {
+                opacity: 1;
+            }
+            
+            &:not(:last-child) {
+                border-right: 2px solid var(--spacer-color);
+            }
+            
+            &.current-menu-item a {
+                border-bottom: 2px solid #D7A77B;
+            }
+            
+            a {
+                color: #564033;
+                vertical-align: middle;
+                padding: .3rem 0;
+            }
+        }
+    }
+    
+    &.navigation--vertical {
+        &, * { width: 100%; }
+        
+        .menu {
+            flex-direction: column;
+            // justify-content: flex-start;
+            align-items: flex-start;
+            margin: 0;
         }
         
-        &.current-menu-item a {
-            border-bottom: 2px solid #D7A77B;
+        li {
+            padding: .5rem 0;
         }
         
-        a {
-            color: #564033;
-            vertical-align: middle;
-            padding: .3rem 0;
+        li:not(:last-child) {
+            border-right: none;
+            border-bottom: 2px solid var(--spacer-color);
         }
     }
 }

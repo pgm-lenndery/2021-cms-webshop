@@ -3362,7 +3362,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // initialize scripts when dom is loaded
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  // initialize sesam
+  // initialize collapsing elements
   sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesamCollapse"].initialize(); // initialize feather icons
 
   feather_icons__WEBPACK_IMPORTED_MODULE_3___default.a.replace({
@@ -3378,7 +3378,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
     !p && Object(sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesam"])({
       target: 'sidemenu',
       action: 'hide'
-    });
+    }); // show menu if the user clicks on the sidemenu
+
     Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["eventCallback"])('.sidemenu nav', function () {
       Object(sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesam"])({
         target: 'sidemenu',
@@ -3394,9 +3395,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                e.preventDefault();
-                searchQuery = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["getFormData"])(target).get('search');
-                window.history.pushState('', '', window.location['origin'] + window.location['pathname'] + "?search=".concat(searchQuery));
+                // prevent page reload
+                e.preventDefault(); // get the query from the form
+
+                searchQuery = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["getFormData"])(target).get('search'); // update the url of the page without reloading
+
+                window.history.pushState('', '', window.location['origin'] + window.location['pathname'] + "?search=".concat(searchQuery)); // get the results, based on query
+
                 _context.next = 5;
                 return fetchSearchQuery(searchQuery);
 
@@ -3423,33 +3428,34 @@ document.addEventListener('DOMContentLoaded', function (event) {
       };
     }(), false);
   });
-  var sizes = [{
+  var sizesSingleShops = [{
     breakpoint: 0,
     options: {
       columns: 1
     }
   }, {
-    breakpoint: 576,
+    breakpoint: 760,
     options: {
-      columns: 2
+      columns: 1
     }
   }, {
-    breakpoint: 992,
+    breakpoint: 1502,
     options: {
-      columns: 3
+      columns: 2,
+      justifyColumns: 'space-between'
     }
-  }, {
-    breakpoint: 1500,
-    options: {
-      columns: 4,
-      justifyColumns: 'center'
-    }
-  }];
-  new _maronsy__WEBPACK_IMPORTED_MODULE_4__["Maronsy"]({
-    sizes: sizes,
+  } // { breakpoint: 1190, options: { columns: 3 }},
+  // { breakpoint: 1502, options: { columns: 4, justifyColumns: 'center' }},
+  ];
+  Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('.maronsy.maronsy--single-shops') && new _maronsy__WEBPACK_IMPORTED_MODULE_4__["Maronsy"]({
+    sizesSingleShops: sizesSingleShops,
     justifyColumns: 'flex-start'
   }).init();
 });
+/**
+ * Fetch shop-data from the WP JSON Api
+ * @param {string} query The query that was entered by the user in the search field
+ */
 
 var fetchSearchQuery = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(query) {
@@ -3468,8 +3474,7 @@ var fetchSearchQuery = /*#__PURE__*/function () {
               var rendered = _ref4.title.rendered,
                   place = _ref4.custom_fields.place;
               return unescape(rendered).toLowerCase().includes(query.toLowerCase());
-            } // || place?.includes(await query)
-            );
+            });
 
           case 5:
             return _context2.abrupt("return", _context2.sent);
@@ -3486,23 +3491,32 @@ var fetchSearchQuery = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }();
+/**
+ * Render the results
+ * @param {*} data The data that was returned from the fetchSearchQuery function
+ */
+
 
 var displaySearchResults = function displaySearchResults(data) {
-  var $results = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('#searchResults');
-  $results.innerHTML = '<strong>loading</strong>';
-  if (!data) $results.innerHTML = '<h5>No results</h5>';else {
-    $results.innerHTML = '';
-    data.forEach(function (_ref5) {
-      var link = _ref5.link,
-          rendered = _ref5.title.rendered,
-          introduction = _ref5.custom_fields.introduction;
-      var $card = document.createElement('a');
-      $card.href = link;
-      $card.classList.add('card');
-      $card.innerHTML = "\n                <h5 class=\"card__title\">".concat(rendered, "</h5>\n                <div class=\"card__content\">").concat(introduction, "</div>\n            ");
-      $results.append($card);
-    });
-  }
+  // check if there are results
+  var resultsFound = data.length > 0; // get the node that will contain the results
+
+  var $results = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('#searchResults'); // display a message if no results are found
+
+  if (!resultsFound) $results.innerHTML = '<h5>No results</h5>'; // render results if they where found
+  else {
+      $results.innerHTML = '';
+      data.forEach(function (_ref5) {
+        var link = _ref5.link,
+            rendered = _ref5.title.rendered,
+            introduction = _ref5.custom_fields.introduction;
+        var $card = document.createElement('a');
+        $card.href = link;
+        $card.classList.add('card');
+        $card.innerHTML = "\n                <h5 class=\"card__title\">".concat(rendered, "</h5>\n                <div class=\"card__content\">").concat(introduction, "</div>\n            ");
+        $results.append($card);
+      });
+    }
 };
 
 /***/ }),
@@ -3546,7 +3560,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Maronsy = /*#__PURE__*/function () {
   /**
    * Optional parameters when initializing
-   * @param {object} arguments
+   * @param {object} options
    */
   function Maronsy(args) {
     var _this = this;
@@ -3558,7 +3572,8 @@ var Maronsy = /*#__PURE__*/function () {
       container: '.maronsy',
       children: '.maronsy__item',
       columnClass: 'maronsy__column',
-      responsive: true
+      responsive: true,
+      gap: 0 + 'px'
     }, args);
 
     this.OPTIONS = options;
@@ -3664,14 +3679,29 @@ var Maronsy = /*#__PURE__*/function () {
     key: "updateContainer",
     value: function updateContainer(sizeOptions) {
       this.$container.setAttribute('data-justify-columns', sizeOptions['justifyColumns'] || this.OPTIONS['justifyColumns']);
+      this.$container.style.setProperty('--gap', sizeOptions['gap'] || this.OPTIONS['gap']);
     }
+    /**
+     * Add an item at the top of the container
+     * @param {node} item The item that has to be added to the container
+     */
+
   }, {
     key: "prepend",
-    value: function prepend() {// redefine children ...
+    value: function prepend(item) {// redefine children ...
+      // add item to container
+      // onResize
     }
+    /**
+     * Add an item at the bottom of the container
+     * @param {node} item The item that has to be added to the container
+     */
+
   }, {
     key: "append",
-    value: function append() {// redefine children ...ç
+    value: function append(item) {// redefine children ...
+      // add item to container
+      // onResize
     }
   }]);
 

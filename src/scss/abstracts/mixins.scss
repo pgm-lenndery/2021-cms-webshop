@@ -10,3 +10,35 @@
     text-transform: uppercase;
     letter-spacing: 3px;
 }
+
+@mixin verticalListMenu {
+    &:is(ul, .menu), ul {
+        @include fontSerif;
+        list-style: none;
+        font-weight: 400;
+        font-size: 1.1rem;
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        
+        &:hover {
+            li { opacity: .5;}
+        }
+        
+        li {
+            padding: .5rem 0;
+            
+            &, * { color: white !important; }
+            
+            &:hover {
+                opacity: 1;
+            }
+        }
+        
+        li:not(:last-child) {
+            border-right: none;
+            border-bottom: 2px solid $macaron;
+        }
+    }
+}

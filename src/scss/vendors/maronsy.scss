@@ -1,10 +1,15 @@
 .maronsy {
+    --gap: 3rem;
     display: flex;
     justify-content: space-between;
-    gap: 3rem;
+    gap: var(--gap);
     
     &__item {
         margin-bottom: 2rem;
+    }
+    
+    &__column {
+        width: fit-content;
     }
     
     &[data-justify-columns="flex-start"] {justify-content: flex-start;}

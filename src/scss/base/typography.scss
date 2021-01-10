@@ -3,3 +3,15 @@ body {
     font-weight: 400;
     font-style: normal;
 }
+
+.page__content a, .link--inline {
+    &, &:hover {
+        display: inline !important;
+        color: $text;
+        text-decoration: underline;
+    }
+    
+    &:hover {
+        opacity: .6;
+    }
+}

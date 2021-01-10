@@ -1,19 +1,35 @@
-.form {
+.form, form {
     --accent: #70b4c5;
-    --accent-op:#3f656f;
+    --accent-op: #687e84;
+    
+    br {
+        display: none;
+    }
     
     &-theme--coffee {
         --accent: #88603d;
-        --accent-op:#564033;
+        --accent-op: #564033;
     }
     
     &__input {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        border-bottom: 2px solid var(--accent-op);
+        
+        span:first-of-type {
+            @include label;
+            @include fontSans;
+            font-size: .9rem;
+            font-weight: bold;
+            color: var(--accent-op);
+            min-width: fit-content;
+            // margin-bottom: 1.5rem;
+        }
     
         input {
             all: unset;
             padding: .4rem 0rem .4rem 0rem;
-            border-bottom: 2px solid #564033;
             @include fontSerif;
             
             &::placeholder {
@@ -21,6 +37,28 @@
                 opacity: 1;
             }
         }
+    }
+    
+    &__input--area {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: none;
+        
+        .wpcf7-form-control-wrap {
+            width: 100%;
+        }
+    }
+    
+    textarea {
+        width: 100%;
+        border: none;
+        padding: 1rem;
+        background-color: rgb(243, 243, 243);
+    }
+    
+    .wpcf7-form-control-wrap {
+        display: block;
     }
     
     &__input-wrapper {
@@ -37,6 +75,7 @@
         
         .form__input {
             flex: 1;
+            border-bottom: none;
         }
         
         button {
@@ -50,4 +89,16 @@
             color: var(--accent) !important;
         }
     }
+}
+
+.form--float {
+    
+    .form, form {
+        --accent-op: #97aab1;
+    }
+    
+    background-color: #ffffff61;
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 7px;    
 }

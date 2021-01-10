@@ -6,6 +6,12 @@
     @include label;
 }
 
+.color--text {
+    &, & * {
+        color: #687e84;
+    }
+}
+
 .color--latte {
     &, & * {
         color: $latte
@@ -22,4 +28,8 @@
     &, & * {
         color: $chocolat
     }
+}
+
+.opacity--75 {
+    opacity: .75;
 }

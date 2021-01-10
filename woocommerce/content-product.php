@@ -18,7 +18,7 @@
     defined( 'ABSPATH' ) || exit;
 
     global $product;
-
+    
     // Ensure visibility.
     if ( empty( $product ) || ! $product->is_visible() ) {
         return;
@@ -60,12 +60,12 @@
                 do_action( 'woocommerce_show_product_loop_sale_flash' );
             ?>
             
-            <?php 
+            <?php             
                 $products = $product->get_available_variations();
                 foreach( $products as $prod ): 
-                // print_r($products)
+                // print_r($prod)
             ?>
-                <a href="<?= get_permalink( $product->get_id() ) . "?value={$prod['display_regular_price']}"; ?>" class="voucher voucher--theme-dark">
+                <a href="<?= get_permalink( $product->get_id() ) . "?value={$prod['display_regular_price']}&id={$prod['variation_id']}"; ?>" class="voucher voucher--theme-dark">
                     <div class="voucher__body">
                         <h4 class="voucher__seller"><?= $title ?></h4>
                         <p><?= $address['place'] ?></p>
