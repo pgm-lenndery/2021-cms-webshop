@@ -1,9 +1,5 @@
 <?php 
     $current_user = wp_get_current_user();
-    $args = array(
-        'post_type' => 'banners'
-    );
-    $the_query = new WP_Query( $args );
 ?>
 
 <div class="sidemenu sesam-hidden" data-sesam-target="sidemenu" data-sesam-group="groupNameHere">
@@ -23,15 +19,6 @@
             <div class="sidemenu__section sesam-hidden" data-sesam-target="notificationSection" data-sesam-parent="groupNameHere"> 
                 <h4 class="sidemenu__title">Hello <?= $current_user->user_login ?>!</h4>
                 <?php echo do_shortcode( '[woocommerce_my_account]' ) ?>
-                <!-- <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                    <div class="card">
-                        <h5 class="card__title"><?php the_title(); ?></h5>
-                        <div class="card__content">
-                            <?= get_field( 'content', $post->ID ) ?>
-                        </div>
-                    </div>
-                <?php endwhile; ?>
-                <?php wp_reset_postdata(); ?> -->
             </div>
             <div class="sidemenu__section sesam-hidden" data-sesam-target="searchSection" data-sesam-parent="groupNameHere">
                 <h4 class="sidemenu__title">Search shops</h4>

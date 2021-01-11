@@ -3343,18 +3343,14 @@ try {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var cutleryjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cutleryjs */ "../node_modules/cutleryjs/dist/js/index.min.js");
-/* harmony import */ var sesam_collapse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sesam-collapse */ "../node_modules/sesam-collapse/dist/index.min.js");
-/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! feather-icons */ "../../node_modules/feather-icons/dist/feather.js");
-/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(feather_icons__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _maronsy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./maronsy */ "./src/js/maronsy.js");
+/* harmony import */ var cutleryjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cutleryjs */ "../node_modules/cutleryjs/dist/js/index.min.js");
+/* harmony import */ var sesam_collapse__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sesam-collapse */ "../node_modules/sesam-collapse/dist/index.min.js");
+/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! feather-icons */ "../../node_modules/feather-icons/dist/feather.js");
+/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(feather_icons__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _modules_maronsy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/maronsy */ "./src/js/modules/maronsy.js");
+/* harmony import */ var _modules_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/app */ "./src/js/modules/app.js");
+/* harmony import */ var _modules_cookies__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/cookies */ "./src/js/modules/cookies.js");
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -3362,71 +3358,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // initialize scripts when dom is loaded
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  // initialize collapsing elements
-  sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesamCollapse"].initialize(); // initialize feather icons
+  Object(_modules_app__WEBPACK_IMPORTED_MODULE_4__["initialize"])();
+  Object(_modules_cookies__WEBPACK_IMPORTED_MODULE_5__["spotNotifyCookieHooks"])(); // initialize collapsing elements
 
-  feather_icons__WEBPACK_IMPORTED_MODULE_3___default.a.replace({
+  sesam_collapse__WEBPACK_IMPORTED_MODULE_1__["sesamCollapse"].initialize(); // initialize feather icons
+
+  feather_icons__WEBPACK_IMPORTED_MODULE_2___default.a.replace({
     stroke: '#88603d',
     'stroke-width': '2.4px',
     width: '20px',
     height: '20px'
-  });
-  document.addEventListener('click', function (_ref) {
-    var parentNode = _ref.target;
-    // close sidemenu if clicked outside
-    var p = parentNode.closest('.sidemenu');
-    !p && Object(sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesam"])({
-      target: 'sidemenu',
-      action: 'hide'
-    }); // show menu if the user clicks on the sidemenu
-
-    Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["eventCallback"])('.sidemenu nav', function () {
-      Object(sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesam"])({
-        target: 'sidemenu',
-        action: 'show'
-      });
-    }, false);
-  });
-  document.addEventListener('submit', function (e) {
-    Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["eventCallback"])('#searchForm', /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(target) {
-        var searchQuery, searchData;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                // prevent page reload
-                e.preventDefault(); // get the query from the form
-
-                searchQuery = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["getFormData"])(target).get('search'); // update the url of the page without reloading
-
-                window.history.pushState('', '', window.location['origin'] + window.location['pathname'] + "?search=".concat(searchQuery)); // get the results, based on query
-
-                _context.next = 5;
-                return fetchSearchQuery(searchQuery);
-
-              case 5:
-                searchData = _context.sent;
-                _context.t0 = displaySearchResults;
-                _context.next = 9;
-                return searchData;
-
-              case 9:
-                _context.t1 = _context.sent;
-                (0, _context.t0)(_context.t1);
-
-              case 11:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function (_x) {
-        return _ref2.apply(this, arguments);
-      };
-    }(), false);
   });
   var sizesSingleShops = [{
     breakpoint: 0,
@@ -3447,7 +3388,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   } // { breakpoint: 1190, options: { columns: 3 }},
   // { breakpoint: 1502, options: { columns: 4, justifyColumns: 'center' }},
   ];
-  Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('.maronsy.maronsy--single-shops') && new _maronsy__WEBPACK_IMPORTED_MODULE_4__["Maronsy"]({
+  Object(cutleryjs__WEBPACK_IMPORTED_MODULE_0__["returnNode"])('.maronsy.maronsy--single-shops') && new _modules_maronsy__WEBPACK_IMPORTED_MODULE_3__["Maronsy"]({
     sizes: sizesSingleShops,
     justifyColumns: 'flex-start'
   }).init();
@@ -3467,84 +3408,153 @@ document.addEventListener('DOMContentLoaded', function (event) {
       columns: 2
     }
   }];
-  Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('.maronsy.maronsy--blog') && new _maronsy__WEBPACK_IMPORTED_MODULE_4__["Maronsy"]({
+  Object(cutleryjs__WEBPACK_IMPORTED_MODULE_0__["returnNode"])('.maronsy.maronsy--blog') && new _modules_maronsy__WEBPACK_IMPORTED_MODULE_3__["Maronsy"]({
     sizes: sizesBlog,
     gap: '2rem'
   }).init();
 });
-/**
- * Fetch shop-data from the WP JSON Api
- * @param {string} query The query that was entered by the user in the search field
- */
 
-var fetchSearchQuery = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(query) {
-    var data;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.next = 2;
-            return new cutleryjs__WEBPACK_IMPORTED_MODULE_1__["Api"]('http://golocal.local/wp-json/wp/v2/shops/').JSON();
+/***/ }),
 
-          case 2:
-            data = _context2.sent;
-            _context2.next = 5;
-            return data.filter(function (_ref4) {
-              var rendered = _ref4.title.rendered,
-                  place = _ref4.custom_fields.place;
-              return unescape(rendered).toLowerCase().includes(query.toLowerCase());
-            });
+/***/ "./src/js/modules/app.js":
+/*!*******************************!*\
+  !*** ./src/js/modules/app.js ***!
+  \*******************************/
+/*! exports provided: initialize */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-          case 5:
-            return _context2.abrupt("return", _context2.sent);
-
-          case 6:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-
-  return function fetchSearchQuery(_x2) {
-    return _ref3.apply(this, arguments);
-  };
-}();
-/**
- * Render the results
- * @param {*} data The data that was returned from the fetchSearchQuery function
- */
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialize", function() { return initialize; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var cutleryjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cutleryjs */ "../node_modules/cutleryjs/dist/js/index.min.js");
+/* harmony import */ var sesam_collapse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sesam-collapse */ "../node_modules/sesam-collapse/dist/index.min.js");
+/* harmony import */ var _cookies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cookies */ "./src/js/modules/cookies.js");
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search */ "./src/js/modules/search.js");
 
 
-var displaySearchResults = function displaySearchResults(data) {
-  // check if there are results
-  var resultsFound = data.length > 0; // get the node that will contain the results
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-  var $results = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('#searchResults'); // display a message if no results are found
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-  if (!resultsFound) $results.innerHTML = '<h5>No results</h5>'; // render results if they where found
-  else {
-      $results.innerHTML = '';
-      data.forEach(function (_ref5) {
-        var link = _ref5.link,
-            rendered = _ref5.title.rendered,
-            introduction = _ref5.custom_fields.introduction;
-        var $card = document.createElement('a');
-        $card.href = link;
-        $card.classList.add('card', 'card--search');
-        $card.innerHTML = "\n                <h5 class=\"card__title\">".concat(rendered, "</h5>\n                <div class=\"card__content\">").concat(introduction, "</div>\n            ");
-        $results.append($card);
+
+
+
+
+var initialize = function initialize() {
+  document.addEventListener('click', function (_ref) {
+    var parentNode = _ref.target;
+    // close sidemenu if clicked outside
+    var p = parentNode.closest('.sidemenu');
+    !p && Object(sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesam"])({
+      target: 'sidemenu',
+      action: 'hide'
+    }); // show menu if the user clicks on the sidemenu
+
+    Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["eventCallback"])('.sidemenu nav', function () {
+      Object(sesam_collapse__WEBPACK_IMPORTED_MODULE_2__["sesam"])({
+        target: 'sidemenu',
+        action: 'show'
       });
-    }
+    }, false);
+    Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["eventCallback"])('[data-cookie-hook].card--notify .card__close', function (_ref2) {
+      var parentNode = _ref2.parentNode;
+      var id = parentNode.closest('.card').dataset.cookieHook;
+      Object(_cookies__WEBPACK_IMPORTED_MODULE_3__["setCookieHook"])(id);
+      parentNode.remove();
+    }, false);
+  });
+  document.addEventListener('submit', function (e) {
+    Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["eventCallback"])('#searchForm', /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(target) {
+        var searchQuery, searchData;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                // prevent page reload
+                e.preventDefault(); // get the query from the form
+
+                searchQuery = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["getFormData"])(target).get('search'); // update the url of the page without reloading
+
+                window.history.pushState('', '', window.location['origin'] + window.location['pathname'] + "?search=".concat(searchQuery)); // get the results, based on query
+
+                _context.next = 5;
+                return Object(_search__WEBPACK_IMPORTED_MODULE_4__["fetchSearchQuery"])(searchQuery);
+
+              case 5:
+                searchData = _context.sent;
+                _context.t0 = _search__WEBPACK_IMPORTED_MODULE_4__["displaySearchResults"];
+                _context.next = 9;
+                return searchData;
+
+              case 9:
+                _context.t1 = _context.sent;
+                (0, _context.t0)(_context.t1);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref3.apply(this, arguments);
+      };
+    }(), false);
+  });
 };
 
 /***/ }),
 
-/***/ "./src/js/maronsy.js":
-/*!***************************!*\
-  !*** ./src/js/maronsy.js ***!
-  \***************************/
+/***/ "./src/js/modules/cookies.js":
+/*!***********************************!*\
+  !*** ./src/js/modules/cookies.js ***!
+  \***********************************/
+/*! exports provided: spotNotifyCookieHooks, setCookieHook, cookieHook */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "spotNotifyCookieHooks", function() { return spotNotifyCookieHooks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCookieHook", function() { return setCookieHook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cookieHook", function() { return cookieHook; });
+/* harmony import */ var cutleryjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cutleryjs */ "../node_modules/cutleryjs/dist/js/index.min.js");
+
+var spotNotifyCookieHooks = function spotNotifyCookieHooks() {
+  var $notifyCards = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_0__["node"])('[data-cookie-hook].card--notify', true);
+  $notifyCards.forEach(function (n) {
+    var cookieHook = n.dataset.cookieHook;
+    var cookie = cutleryjs__WEBPACK_IMPORTED_MODULE_0__["cookies"].get("hook:".concat(cookieHook));
+    if (cookie) n.remove();
+  });
+};
+var setCookieHook = function setCookieHook(name) {
+  cutleryjs__WEBPACK_IMPORTED_MODULE_0__["cookies"].set("hook:".concat(name), 'true');
+};
+var cookieHook = function cookieHook(hook) {
+  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {
+    null;
+  };
+  var $target = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_0__["node"])("[data-cookie-hook=\"".concat(hook, "\"]"));
+
+  if (cutleryjs__WEBPACK_IMPORTED_MODULE_0__["cookies"].get("hook:".concat(hook)) == null) {
+    callback($target);
+    if ($target.classList.contains('notice')) $target.classList.add('notice--show');
+  }
+
+  ;
+};
+
+/***/ }),
+
+/***/ "./src/js/modules/maronsy.js":
+/*!***********************************!*\
+  !*** ./src/js/modules/maronsy.js ***!
+  \***********************************/
 /*! exports provided: Maronsy */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3728,6 +3738,100 @@ var Maronsy = /*#__PURE__*/function () {
 
   return Maronsy;
 }();
+
+/***/ }),
+
+/***/ "./src/js/modules/search.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/search.js ***!
+  \**********************************/
+/*! exports provided: fetchSearchQuery, displaySearchResults */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSearchQuery", function() { return fetchSearchQuery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "displaySearchResults", function() { return displaySearchResults; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var cutleryjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cutleryjs */ "../node_modules/cutleryjs/dist/js/index.min.js");
+/* harmony import */ var sesam_collapse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sesam-collapse */ "../node_modules/sesam-collapse/dist/index.min.js");
+/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! feather-icons */ "../../node_modules/feather-icons/dist/feather.js");
+/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(feather_icons__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+/**
+ * Fetch shop-data from the WP JSON Api
+ * @param {string} query The query that was entered by the user in the search field
+ */
+
+var fetchSearchQuery = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(query) {
+    var data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return new cutleryjs__WEBPACK_IMPORTED_MODULE_1__["Api"]('http://golocal.local/wp-json/wp/v2/shops/').JSON();
+
+          case 2:
+            data = _context.sent;
+            _context.next = 5;
+            return data.filter(function (_ref2) {
+              var rendered = _ref2.title.rendered,
+                  place = _ref2.custom_fields.place;
+              return unescape(rendered).toLowerCase().includes(query.toLowerCase());
+            });
+
+          case 5:
+            return _context.abrupt("return", _context.sent);
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function fetchSearchQuery(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+/**
+ * Render the results
+ * @param {*} data The data that was returned from the fetchSearchQuery function
+ */
+
+var displaySearchResults = function displaySearchResults(data) {
+  // check if there are results
+  var resultsFound = data.length > 0; // get the node that will contain the results
+
+  var $results = Object(cutleryjs__WEBPACK_IMPORTED_MODULE_1__["returnNode"])('#searchResults'); // display a message if no results are found
+
+  if (!resultsFound) $results.innerHTML = '<h5>No results</h5>'; // render results if they where found
+  else {
+      $results.innerHTML = '';
+      data.forEach(function (_ref3) {
+        var link = _ref3.link,
+            rendered = _ref3.title.rendered,
+            introduction = _ref3.custom_fields.introduction;
+        var $card = document.createElement('a');
+        $card.href = link;
+        $card.classList.add('card', 'card--search');
+        $card.innerHTML = "\n                <h5 class=\"card__title\">".concat(rendered, "</h5>\n                <div class=\"card__content\">").concat(introduction, "</div>\n            ");
+        $results.append($card);
+      });
+    }
+};
 
 /***/ }),
 
